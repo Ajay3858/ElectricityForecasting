@@ -1,0 +1,202 @@
+[2026-10-18 14:52:57] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 14:52:57] Telemetry source: 'C:\Users\AJAY R\ElectricityForecasting\train.csv'
+[2026-10-18 14:52:57] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 14:52:57] Running in single-execution test mode (--once)...
+[2026-10-18 14:52:57] Starting prediction
+[2026-10-18 14:52:59] Current usage: 61.20 kWh
+[2026-10-18 14:52:59] Predicted next 15-min usage: 47.56 kWh
+[2026-10-18 14:52:59] Prediction saved successfully
+[2026-10-18 14:52:59] Single prediction execution completed successfully.
+[2026-10-18 14:53:40] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 14:53:40] Telemetry source: 'C:\Users\AJAY R\ElectricityForecasting\train.csv'
+[2026-10-18 14:53:40] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 14:53:40] Running in single-execution test mode (--once)...
+[2026-10-18 14:53:40] Starting prediction
+[2026-10-18 14:53:42] Current usage: 61.20 kWh
+[2026-10-18 14:53:42] Predicted next 15-min usage: 47.56 kWh
+[2026-10-18 14:53:42] Duplicate entry check: Timestamp '2018-10-19 23:45:00' already recorded in history. Skipping append.
+[2026-10-18 14:53:42] Prediction saved successfully
+[2026-10-18 14:53:42] Single prediction execution completed successfully.
+[2026-10-18 14:56:13] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 14:56:13] Telemetry Source: CSVTelemetrySource ({'source': 'csv', 'file': 'train.csv'})
+[2026-10-18 14:56:13] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 14:56:13] Running in single-execution test mode (--once)...
+[2026-10-18 14:56:13] Starting prediction
+[2026-10-18 14:56:15] Current usage: 61.20 kWh
+[2026-10-18 14:56:15] Predicted next 15-min usage: 47.56 kWh
+[2026-10-18 14:56:15] Duplicate entry check: Timestamp '2018-10-19 23:45:00' already recorded in history. Skipping append.
+[2026-10-18 14:56:15] Prediction saved successfully
+[2026-10-18 14:56:15] Single prediction execution completed successfully.
+[2026-10-18 15:02:12] [LIVE_BUFFER] Initializing live buffer from 'C:\Users\AJAY R\ElectricityForecasting\train.csv' with 700 records...
+[2026-10-18 15:02:12] [LIVE_BUFFER] Live buffer initialized at 'C:\Users\AJAY R\ElectricityForecasting\automation\live_telemetry.csv' with 700 records. Zero target columns included.
+[2026-10-18 15:02:44] [LIVE_BUFFER] REJECTED: Target Leakage Rejected: Reading contains forbidden target column 'next_interval_Usage_kWh'. Live telemetry buffer must never receive future target values.
+[2026-10-18 15:02:44] [LIVE_BUFFER] REJECTED: Numeric Validation Failed: Field 'Usage_kWh' has invalid value 'invalid_number': could not convert string to float: 'invalid_number'
+[2026-10-18 15:02:44] [LIVE_BUFFER] REJECTED: Timestamp Validation Failed: Invalid timestamp 'not-a-date': Unknown datetime string format, unable to parse: not-a-date
+[2026-10-18 15:02:44] [LIVE_BUFFER] REJECTED: Duplicate Timestamp Rejected: Timestamp '01/01/2018 00:15' already exists in buffer.
+[2026-10-18 15:02:44] [LIVE_BUFFER] REJECTED: Duplicate Timestamp Rejected: Timestamp '05/01/2018 12:00' already exists in buffer.
+[2026-10-18 15:02:55] [LIVE_BUFFER] REJECTED: Non-Chronological Timestamp Rejected: Incoming effective timestamp '2017-12-31 12:00:00' is not strictly after latest buffer timestamp '2018-01-08 07:00:00' (raw: '08/01/2018 07:00').
+[2026-10-18 15:03:59] [LIVE_BUFFER] Successfully appended live observation: Timestamp='08/01/2018 07:15', Usage=3.35 kWh, Total records=701
+[2026-10-18 15:04:19] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:04:19] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:04:19] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:04:19] Running in single-execution test mode (--once)...
+[2026-10-18 15:04:19] Starting prediction
+[2026-10-18 15:04:21] Current usage: 3.28 kWh
+[2026-10-18 15:04:21] Predicted next 15-min usage: 3.57 kWh
+[2026-10-18 15:04:21] Prediction saved successfully
+[2026-10-18 15:04:21] Single prediction execution completed successfully.
+[2026-10-18 15:08:01] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:08:01] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:08:01] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:08:01] Running in single-execution test mode (--once)...
+[2026-10-18 15:08:01] Starting prediction
+[2026-10-18 15:08:02] Current usage: 3.35 kWh
+[2026-10-18 15:08:02] Predicted next 15-min usage: 3.83 kWh
+[2026-10-18 15:08:02] Prediction saved successfully
+[2026-10-18 15:08:02] Single prediction execution completed successfully.
+[2026-10-18 15:08:16] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:08:16] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:08:16] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:08:16] Running in single-execution test mode (--once)...
+[2026-10-18 15:08:16] Starting prediction
+[2026-10-18 15:08:18] Current usage: 3.35 kWh
+[2026-10-18 15:08:18] Predicted next 15-min usage: 3.83 kWh
+[2026-10-18 15:08:18] Duplicate entry check: Timestamp '2018-01-08 07:15:00' already recorded in history. Skipping append.
+[2026-10-18 15:08:18] Prediction saved successfully
+[2026-10-18 15:08:18] Single prediction execution completed successfully.
+[2026-10-18 15:08:27] [LIVE_BUFFER] Successfully appended live observation: Timestamp='08/01/2018 07:30', Usage=5.83 kWh, Total records=702
+[2026-10-18 15:08:34] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:08:34] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:08:34] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:08:34] Running in single-execution test mode (--once)...
+[2026-10-18 15:08:34] Starting prediction
+[2026-10-18 15:08:36] Current usage: 5.83 kWh
+[2026-10-18 15:08:36] Predicted next 15-min usage: 7.52 kWh
+[2026-10-18 15:08:36] Prediction saved successfully
+[2026-10-18 15:08:36] Single prediction execution completed successfully.
+[2026-10-18 15:12:50] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:12:50] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:12:50] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:12:50] Running in single-execution test mode (--once)...
+[2026-10-18 15:12:50] Starting prediction
+[2026-10-18 15:12:52] Current usage: 5.83 kWh
+[2026-10-18 15:12:52] Predicted next 15-min usage: 7.52 kWh
+[2026-10-18 15:12:52] Duplicate entry check: Timestamp '2018-01-08 07:30:00' already recorded in history. Skipping append.
+[2026-10-18 15:12:52] Prediction saved successfully
+[2026-10-18 15:12:52] Single prediction execution completed successfully.
+[2026-10-18 15:13:35] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:13:35] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:13:35] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:13:35] Running in single-execution test mode (--once)...
+[2026-10-18 15:13:35] Starting prediction
+[2026-10-18 15:13:37] Current usage: 5.83 kWh
+[2026-10-18 15:13:37] Predicted next 15-min usage: 7.52 kWh
+[2026-10-18 15:13:37] Duplicate entry check: Timestamp '2018-01-08 07:30:00' already recorded in history. Skipping append.
+[2026-10-18 15:13:37] Prediction saved successfully
+[2026-10-18 15:13:37] Single prediction execution completed successfully.
+[2026-10-18 15:22:02] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:22:02] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:22:02] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:22:02] Running in single-execution test mode (--once)...
+[2026-10-18 15:22:02] Starting prediction
+[2026-10-18 15:22:04] Current usage: 2.63 kWh
+[2026-10-18 15:22:04] Predicted next 15-min usage: 3.13 kWh
+[2026-10-18 15:22:04] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:22:04] Prediction saved successfully
+[2026-10-18 15:22:04] Single prediction execution completed successfully.
+[2026-10-18 15:22:56] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:22:56] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:22:56] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:22:56] Running in single-execution test mode (--once)...
+[2026-10-18 15:22:56] Starting prediction
+[2026-10-18 15:22:58] Current usage: 2.63 kWh
+[2026-10-18 15:22:58] Predicted next 15-min usage: 3.09 kWh
+[2026-10-18 15:22:58] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:22:58] Prediction saved successfully
+[2026-10-18 15:22:58] Single prediction execution completed successfully.
+[2026-10-18 15:23:04] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:23:04] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:23:04] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:23:04] Running in single-execution test mode (--once)...
+[2026-10-18 15:23:04] Starting prediction
+[2026-10-18 15:23:05] Current usage: 2.63 kWh
+[2026-10-18 15:23:05] Predicted next 15-min usage: 3.13 kWh
+[2026-10-18 15:23:05] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:23:05] Prediction saved successfully
+[2026-10-18 15:23:05] Single prediction execution completed successfully.
+[2026-10-18 15:23:12] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:23:12] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:23:12] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:23:12] Running in single-execution test mode (--once)...
+[2026-10-18 15:23:12] Starting prediction
+[2026-10-18 15:23:13] Current usage: 2.63 kWh
+[2026-10-18 15:23:13] Predicted next 15-min usage: 3.08 kWh
+[2026-10-18 15:23:13] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:23:13] Prediction saved successfully
+[2026-10-18 15:23:13] Single prediction execution completed successfully.
+[2026-10-18 15:24:38] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:24:38] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:24:38] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:24:38] Running in single-execution test mode (--once)...
+[2026-10-18 15:24:38] Starting prediction
+[2026-10-18 15:24:41] Current usage: 2.63 kWh
+[2026-10-18 15:24:41] Predicted next 15-min usage: 3.07 kWh
+[2026-10-18 15:24:41] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:24:41] Prediction saved successfully
+[2026-10-18 15:24:41] Single prediction execution completed successfully.
+[2026-10-18 15:27:34] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:27:34] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:27:34] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:27:34] Running in single-execution test mode (--once)...
+[2026-10-18 15:27:34] Starting prediction
+[2026-10-18 15:27:37] Current usage: 2.63 kWh
+[2026-10-18 15:27:37] Predicted next 15-min usage: 3.13 kWh
+[2026-10-18 15:27:37] Prediction saved successfully
+[2026-10-18 15:27:37] Single prediction execution completed successfully.
+[2026-10-18 15:38:45] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:38:45] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:38:45] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:38:45] Running in single-execution test mode (--once)...
+[2026-10-18 15:38:45] Starting prediction
+[2026-10-18 15:38:47] Current usage: 2.63 kWh
+[2026-10-18 15:38:47] Predicted next 15-min usage: 3.09 kWh
+[2026-10-18 15:38:47] Duplicate entry check: Timestamp '2018-01-09 00:00:00' already recorded in history. Skipping append.
+[2026-10-18 15:38:47] Prediction saved successfully
+[2026-10-18 15:38:47] Single prediction execution completed successfully.
+[2026-10-18 15:42:54] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:42:54] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:42:54] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:42:54] Running in single-execution test mode (--once)...
+[2026-10-18 15:42:54] Starting prediction
+[2026-10-18 15:42:56] Current usage: 2.63 kWh
+[2026-10-18 15:42:56] Predicted next 15-min usage: 2.89 kWh
+[2026-10-18 15:42:56] Prediction saved successfully
+[2026-10-18 15:42:56] Single prediction execution completed successfully.
+[2026-10-18 15:48:45] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:48:45] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:48:45] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:48:45] Running in single-execution test mode (--once)...
+[2026-10-18 15:48:45] Starting prediction
+[2026-10-18 15:48:48] Current usage: 2.63 kWh
+[2026-10-18 15:48:48] Predicted next 15-min usage: 2.89 kWh
+[2026-10-18 15:48:48] Duplicate entry check: Timestamp '2018-08-01 00:45:00' already recorded in history. Skipping append.
+[2026-10-18 15:48:48] Prediction saved successfully
+[2026-10-18 15:48:48] Single prediction execution completed successfully.
+[2026-10-18 15:49:31] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:49:31] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:49:31] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:49:31] Running in single-execution test mode (--once)...
+[2026-10-18 15:49:31] Starting prediction
+[2026-10-18 15:49:33] Current usage: 2.66 kWh
+[2026-10-18 15:49:33] Predicted next 15-min usage: 2.76 kWh
+[2026-10-18 15:49:33] Prediction saved successfully
+[2026-10-18 15:49:33] Single prediction execution completed successfully.
+[2026-10-18 15:50:11] Automated Forecasting Scheduler initialized (Interval: 15 min)
+[2026-10-18 15:50:11] Telemetry Source: LiveCSVTelemetrySource ({'source': 'live_csv', 'file': 'automation/live_telemetry.csv'})
+[2026-10-18 15:50:11] History archive:  'C:\Users\AJAY R\ElectricityForecasting\automation/prediction_history.csv'
+[2026-10-18 15:50:11] Running in single-execution test mode (--once)...
+[2026-10-18 15:50:11] Starting prediction
+[2026-10-18 15:50:13] Current usage: 2.63 kWh
+[2026-10-18 15:50:13] Predicted next 15-min usage: 2.88 kWh
+[2026-10-18 15:50:13] Prediction saved successfully
+[2026-10-18 15:50:13] Single prediction execution completed successfully.

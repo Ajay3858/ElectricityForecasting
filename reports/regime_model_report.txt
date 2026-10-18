@@ -1,0 +1,111 @@
+================================================================================
+TWO-STAGE REGIME-SWITCHING FORECASTING EXPERIMENT REPORT
+================================================================================
+Generated: 2026-10-18 14:34:08
+Chronological Validation Partition: 5,472 records (Aug 24 to Oct 19, 2018)
+Reproducibility Seed: 42
+
+1. LEAKAGE VERIFICATION AUDIT
+--------------------------------------------------------------------------------
+[VERIFIED] next_interval_Usage_kWh is NEVER included in the input feature set.
+[VERIFIED] Future telemetry values are NEVER accessed by lag or rolling operations.
+[VERIFIED] All rolling features use only past and current values (strictly backward).
+[VERIFIED] Lag operations look strictly backward into previous time steps.
+[VERIFIED] Validation records do not influence training feature distributions.
+[VERIFIED] Regime targets (Normal, Surge, Plunge) were derived exclusively from the 
+           training target ground truth during Stage 1 training.
+[VERIFIED] The regime classifier receives only telemetry available at time t.
+
+2. STAGE 1 — REGIME CLASSIFIER BENCHMARK
+--------------------------------------------------------------------------------
+Class Definitions:
+  - NORMAL (Class 0): |next_interval_Usage_kWh - Usage_kWh| <= 30 kWh
+  - SURGE  (Class 1): (next_interval_Usage_kWh - Usage_kWh) > +30 kWh
+  - PLUNGE (Class 2): (next_interval_Usage_kWh - Usage_kWh) < -30 kWh
+
+Class Distributions:
+  - Training Set (21,887 rows):
+      Normal: 20,413 (93.27%) | Surge: 754 (3.45%) | Plunge: 720 (3.29%)
+  - Validation Set (5,472 rows):
+      Normal:  5,229 (95.56%) | Surge: 118 (2.16%) | Plunge: 125 (2.28%)
+
+Classifier Performance Comparison:
+Classifier      | Surge Recall | Surge Prec | Surge F1 | Plunge Recall | Plunge Prec | Plunge F1 | Accuracy
+-------------------------------------------------------------------------------------------------------
+CatBoost        | 0.7542       | 0.2681     | 0.3956   | 0.8720        | 0.3225      | 0.4708    | 0.9079
+LightGBM        | 0.4492       | 0.3272     | 0.3786   | 0.6880        | 0.5409      | 0.6056    | 0.9479
+XGBoost         | 0.4576       | 0.3051     | 0.3661   | 0.7200        | 0.4813      | 0.5769    | 0.9421
+
+CatBoost Classifier Confusion Matrix (Selected for Stage 1):
+                Predicted Normal    Predicted Surge    Predicted Plunge
+Actual Normal:       4770                235                224             
+Actual Surge:        24                  89                 5               
+Actual Plunge:       8                   8                  109             
+
+Takeaway: CatBoost achieved exceptional recall on both spike classes:
+- CatBoost detected 75.42% of Surges (89/118) and 87.20% of Plunges (109/125).
+
+3. STAGE 2 — REGIME-SPECIFIC REGRESSORS
+--------------------------------------------------------------------------------
+- Model A (Normal Regressor): Trained on 20,413 NORMAL intervals.
+- Model B (Surge Regressor):  Trained on 754 SURGE intervals.
+- Model C (Plunge Regressor): Trained on 720 PLUNGE intervals.
+
+4. COMPREHENSIVE PERFORMANCE COMPARISON
+--------------------------------------------------------------------------------
+Model                            | Overall RMSE   | Overall MAE    | Overall R2
+----------------------------------------------------------------------------
+1. Naive Persistence             | 12.0157        | 5.2994         | 0.8387    
+2. Current Weighted Ensemble     | 8.2281         | 3.8281         | 0.9244    
+3. Prob-Weighted Regime Model    | 10.7356        | 5.4926         | 0.8712    
+4. Hard-Routing Regime Model     | 12.7700        | 5.3925         | 0.8178    
+============================================================================
+
+REGIME-SPECIFIC BREAKDOWN (RMSE / MAE):
+Model                            | Normal (N=5229)    | Surge (N=118)      | Plunge (N=125)
+--------------------------------------------------------------------------------------------
+1. Naive Persistence             | 7.36 / 3.51        | 43.73 / 42.32      | 47.39 / 45.14     
+2. Current Weighted Ensemble     | 6.24 / 3.04        | 29.95 / 25.27      | 22.12 / 16.63     
+3. Prob-Weighted Regime Model    | 9.92 / 4.99        | 24.37 / 19.26      | 19.16 / 13.55     
+4. Hard-Routing Regime Model     | 11.91 / 4.91       | 26.78 / 18.70      | 22.89 / 13.12     
+================================================================================
+
+5. CRITICAL SPIKE ANALYSIS (SURGES + PLUNGES COMBINED: N=243)
+--------------------------------------------------------------------------------
+- Baseline Spike RMSE:       26.2175 kWh
+- Prob-Weighted Spike RMSE:  21.8452 kWh (+16.68% reduction)
+- Hard-Routing Spike RMSE:   24.8554 kWh (+5.20% reduction)
+
+- Baseline Spike MAE:        20.8267 kWh
+- Prob-Weighted Spike MAE:   16.3193 kWh (+21.64% reduction)
+- Hard-Routing Spike MAE:    15.8287 kWh (+24.00% reduction)
+
+Largest 50 Prediction Errors Comparison:
+- Baseline Top 50 Mean Error:       45.5611 kWh
+- Prob-Weighted Top 50 Mean Error:  51.0271 kWh (+12.0% worse)
+- Hard-Routing Top 50 Mean Error:   66.9032 kWh (+46.8% worse)
+
+Diagnosis:
+The regime-switching models succeeded in reducing error on TRUE spikes (cutting MAE by 
+over 21%). However, on normal steady-state intervals, false positives from the classifier
+triggered the high-consumption surge model, injecting large artificial errors into normal
+intervals and making the overall top-50 errors worse.
+
+6. FINAL MODEL SELECTION & RECOMMENDATION
+--------------------------------------------------------------------------------
+DECISION: KEEP CURRENT ENSEMBLE
+
+Validation Performance Justification:
+- Metric                  | Current Ensemble (Prod) | Prob-Weighted Regime | Verdict
+  ------------------------------------------------------------------------------------
+  Overall RMSE (Primary)  | 8.2281 kWh              | 10.7356 kWh          | Prod is 30.5% Better
+  Overall MAE             | 3.8281 kWh              | 5.4926 kWh           | Prod is 43.5% Better
+  Overall R2              | 0.9244                  | 0.8712               | Prod is Superior
+  Spike MAE               | 20.8267 kWh             | 16.3193 kWh          | Regime is Better
+
+Conclusion:
+In industrial time-series forecasting, 95.56% of intervals are non-spiking. Because false 
+positive rate penalties on the 95.56% majority outweigh the genuine gains on the 4.44% 
+minority, the two-stage regime switching model cannot replace the production Weighted Ensemble.
+The production model remains models/best_model.joblib.
+================================================================================

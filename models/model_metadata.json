@@ -1,0 +1,87 @@
+{
+    "best_model_name": "Weighted_Ensemble",
+    "validation_rmse": 8.22813447459273,
+    "validation_mae": 3.828090806478504,
+    "validation_r2": 0.9243626764525974,
+    "baseline_rmse": 8.2729,
+    "baseline_mae": 3.9905,
+    "baseline_r2": 0.9235,
+    "all_results": {
+        "Naive_Persistence": {
+            "rmse": 12.015695723998887,
+            "mae": 5.299442616959065,
+            "r2": 0.8387011633198114
+        },
+        "LightGBM": {
+            "rmse": 8.372925698164964,
+            "mae": 3.8752832473450916,
+            "r2": 0.9216772611897293
+        },
+        "XGBoost": {
+            "rmse": 8.335170954660477,
+            "mae": 3.8385504342589467,
+            "r2": 0.9223820060124355
+        },
+        "CatBoost": {
+            "rmse": 8.268621763794354,
+            "mae": 3.9344642996931882,
+            "r2": 0.9236164843504473
+        },
+        "Weighted_Ensemble": {
+            "rmse": 8.22813447459273,
+            "mae": 3.828090806478504,
+            "r2": 0.9243626764525974
+        }
+    },
+    "feature_columns": [
+        "Usage_kWh",
+        "Lagging_Current_Reactive.Power_kVarh",
+        "Leading_Current_Reactive_Power_kVarh",
+        "CO2(tCO2)",
+        "Lagging_Current_Power_Factor",
+        "Leading_Current_Power_Factor",
+        "NSM",
+        "Load_Type_enc",
+        "WeekStatus_enc",
+        "Day_of_week_enc",
+        "total_reactive_kVarh",
+        "apparent_power_kVAh",
+        "power_factor_diff",
+        "q_p_ratio",
+        "sin_nsm",
+        "cos_nsm",
+        "sin_dow",
+        "cos_dow",
+        "hour",
+        "minute",
+        "month",
+        "next_minute",
+        "is_next_top_of_hour",
+        "usage_lag_1",
+        "usage_lag_2",
+        "usage_lag_3",
+        "usage_lag_4",
+        "usage_lag_96",
+        "usage_lag_672",
+        "usage_roll_mean_4",
+        "usage_roll_std_4",
+        "usage_roll_min_4",
+        "usage_roll_max_4",
+        "usage_roll_range_4",
+        "usage_roll_mean_16",
+        "usage_roll_std_16",
+        "usage_roll_mean_96",
+        "usage_roll_std_96",
+        "usage_ewma_4",
+        "usage_diff_1",
+        "usage_diff_96",
+        "usage_accel",
+        "q_diff_1",
+        "co2_diff_1"
+    ],
+    "target_column": "next_interval_Usage_kWh",
+    "train_rows": 21887,
+    "val_rows": 5472,
+    "random_seed": 42,
+    "trained_at": "2026-10-18 14:24:55"
+}

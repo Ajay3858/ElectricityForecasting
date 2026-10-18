@@ -1,0 +1,9 @@
+{
+    "telemetry": {
+        "source": "live_csv",
+        "file": "automation/live_telemetry.csv"
+    },
+    "output_file": "prediction.csv",
+    "history_file": "automation/prediction_history.csv",
+    "interval_minutes": 15
+}

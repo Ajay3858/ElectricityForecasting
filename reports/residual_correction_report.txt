@@ -1,0 +1,99 @@
+================================================================================
+CONSERVATIVE RESIDUAL-CORRECTION EXPERIMENT REPORT
+================================================================================
+Generated: 2026-10-18 14:43:02
+Chronological Validation Partition: 5,472 records (Aug 24 to Oct 19, 2018)
+Reproducibility Seed: 42
+
+1. LEAKAGE VERIFICATION AUDIT
+--------------------------------------------------------------------------------
+[VERIFIED] next_interval_Usage_kWh is NEVER included in the input feature set.
+[VERIFIED] Future telemetry values are NEVER accessed by lag or rolling operations.
+[VERIFIED] Base predictions on training set were generated strictly by models fitted on training data.
+[VERIFIED] Validation predictions were generated strictly out-of-fold.
+[VERIFIED] Gating conditions (Condition 4: abs(q_diff_1) > 5.0, Condition 5: q_p_ratio < 0.8)
+           were derived strictly from training data quantiles.
+
+2. STEP 1 & 2: CANDIDATE RESIDUAL REGRESSOR BENCHMARK
+--------------------------------------------------------------------------------
+Target: residual_t = next_interval_Usage_kWh - base_prediction_t
+
+Model Comparison on Validation Residuals:
+Residual Model  | Val RMSE (kWh)   | Val MAE (kWh)    | Val R2    
+------------------------------------------------------------------
+CatBoost        | 8.2565           | 3.8261           | -0.0070   
+LightGBM        | 8.3026           | 3.8528           | -0.0182   
+XGBoost         | 8.3747           | 3.8983           | -0.0360   
+
+Selected Residual Model: CatBoost (Lowest RMSE: 8.2565 kWh)
+
+3. STEP 3 & 4: CONSERVATIVE CORRECTION & ALPHA GRID COMPARISON
+--------------------------------------------------------------------------------
+Model Configuration                          | Overall RMSE   | Overall MAE    | Overall R2
+------------------------------------------------------------------------------------------
+Current Weighted Ensemble                    | 8.2281         | 3.8281         | 0.9244    
+Residual correction alpha=0.10               | 8.2285         | 3.8213         | 0.9244    
+Residual correction alpha=0.20               | 8.2299         | 3.8195         | 0.9243    
+Residual correction alpha=0.30               | 8.2318         | 3.8180         | 0.9243    
+Residual correction alpha=0.40               | 8.2340         | 3.8170         | 0.9243    
+Residual correction alpha=0.50               | 8.2366         | 3.8163         | 0.9242    
+Best gated residual correction (alpha=0.10)  | 8.2287         | 3.8242         | 0.9244    
+==========================================================================================
+
+REGIME BREAKDOWN COMPARISON (RMSE / MAE in kWh):
+Model Configuration                          | Normal (N=5229)    | Spike (N=243)
+--------------------------------------------------------------------------------------------
+Current Weighted Ensemble                    | 6.24 / 3.04        | 26.22 / 20.83     
+Residual correction alpha=0.10               | 6.24 / 3.03        | 26.20 / 20.79     
+Residual correction alpha=0.20               | 6.25 / 3.03        | 26.19 / 20.77     
+Residual correction alpha=0.30               | 6.25 / 3.03        | 26.18 / 20.75     
+Residual correction alpha=0.40               | 6.26 / 3.03        | 26.17 / 20.74     
+Residual correction alpha=0.50               | 6.26 / 3.03        | 26.16 / 20.72     
+Best gated residual correction (alpha=0.10)  | 6.24 / 3.04        | 26.20 / 20.79     
+================================================================================
+
+4. DETAILED ERROR ANALYSIS: BASE vs. BEST RESIDUAL MODEL (alpha=0.10)
+--------------------------------------------------------------------------------
+Segment                      | Base Model (Prod)     | Residual Model        | % Change
+--------------------------------------------------------------------------------------------
+All Observations (RMSE)      | 8.2281                | 8.2285                | +0.00% (Worse)
+All Observations (MAE)       | 3.8281                | 3.8213                | -0.18% (Better)
+Normal Intervals (RMSE)      | 6.2374                | 6.2408                | +0.05% (Worse)
+Normal Intervals (MAE)       | 3.0381                | 3.0326                | -0.18% (Better)
+Positive Surges (RMSE)       | 29.9518               | 29.9450               | -0.02% (Better)
+Positive Surges (MAE)        | 25.2700               | 25.2514               | -0.07% (Better)
+Negative Plunges (RMSE)      | 22.1213               | 22.0966               | -0.11% (Better)
+Negative Plunges (MAE)       | 16.6321               | 16.5841               | -0.29% (Better)
+Largest 50 Errors (Mean MAE) | 45.5611               | 45.5696               | +0.02% (Worse)
+
+Diagnosis of False Positive Overcorrections:
+Residual modeling on top of an already tuned Weighted Ensemble exhibits the classic
+additive overfitting effect. On true spikes, the residual model provides a tiny corrective
+nudge (-0.02% to -0.11% RMSE). However, on normal intervals (which make up 95.56% of the 
+data), the residual model introduces minor random fluctuations that increase normal RMSE from 
+6.2374 to 6.2408 kWh. Because normal intervals outnumber spikes 21.5-to-1, overall RMSE degrades.
+
+5. MODEL SELECTION & RECOMMENDATION
+--------------------------------------------------------------------------------
+DECISION: KEEP CURRENT ENSEMBLE
+
+Validation Performance Justification:
+- Metric                  | Current Ensemble (Prod) | Best Residual (alpha=0.10) | Gated Residual (alpha=0.10)
+  ----------------------------------------------------------------------------------------------------------
+  Overall RMSE (Primary)  | 8.2281 kWh (BEST)       | 8.2285 kWh (Worse)         | 8.2287 kWh (Worse)
+  Overall MAE             | 3.8281 kWh              | 3.8213 kWh                 | 3.8242 kWh
+  Overall R2              | 0.9244 (BEST)           | 0.9244                     | 0.9244
+  Normal RMSE             | 6.2374 kWh (BEST)       | 6.2408 kWh                 | 6.2409 kWh
+
+Decision Rule Applied:
+"The current Weighted Ensemble must remain the production model unless the new approach 
+genuinely improves overall validation RMSE. If the residual correction worsens overall RMSE, 
+reject it."
+
+Outcome:
+The residual correction worsened overall validation RMSE across all tested alpha values 
+(0.10, 0.20, 0.30, 0.40, 0.50) and under the training-derived gating mechanism.
+Therefore, the residual-correction approach is REJECTED.
+
+The active production model remains the Weighted Ensemble in models/best_model.joblib.
+================================================================================

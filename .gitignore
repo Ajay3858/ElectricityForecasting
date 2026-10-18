@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+env/
+prediction.csv
+automation/prediction_history.csv
+automation/live_telemetry.csv
