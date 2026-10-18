@@ -1,7 +1,7 @@
 ================================================================================
 ELECTRICITY CONSUMPTION FORECASTING - MODEL EVALUATION & IMPROVEMENT REPORT
 ================================================================================
-Generated: 2026-10-18 14:24:55
+Generated: 2026-10-18 21:04:00
 Validation Method: Strictly Chronological (Same 80% Train, 20% Validation Split)
 Reproducibility Seed: 42
 
@@ -61,8 +61,8 @@ Total Input Features: 44
 4. VALIDATION METHOD (NO LOOKAHEAD LEAKAGE)
 --------------------------------------------------------------------------------
 - Method: Strictly Chronological Split (No random shuffling / No standard K-Fold)
-- Training Partition: First 80% (21,887 rows)
-    Range: 2018-01-08 00:15:00 to 2018-08-23 23:45:00
+- Training Partition: First 80% (21,886 rows)
+    Range: 2018-01-08 00:15:00 to 2018-08-23 23:30:00
 - Validation Partition: Final 20% (5,472 rows)
     Range: 2018-08-24 00:00:00 to 2018-10-19 23:45:00
 
@@ -71,36 +71,36 @@ Total Input Features: 44
 Model                  | Val RMSE (kWh)   | Val MAE (kWh)    | Val R2    
 ------------------------------------------------------------------------
 Naive_Persistence      | 12.0157          | 5.2994           | 0.8387    
-LightGBM               | 8.3729           | 3.8753           | 0.9217    
-XGBoost                | 8.3352           | 3.8386           | 0.9224    
-CatBoost               | 8.2686           | 3.9345           | 0.9236    
-Weighted_Ensemble      | 8.2281           | 3.8281           | 0.9244    
+LightGBM               | 8.3322           | 3.8689           | 0.9224    
+XGBoost                | 8.3385           | 3.8530           | 0.9223    
+CatBoost               | 8.2634           | 3.9238           | 0.9237    
+Weighted_Ensemble      | 8.2108           | 3.8204           | 0.9247    
 ========================================================================
 
 6. BASELINE VS. IMPROVED COMPARISON
 --------------------------------------------------------------------------------
-Baseline CatBoost RMSE:  8.2729 kWh  -->  Improved Best RMSE: 8.2281 kWh  (+0.54% improvement)
-Baseline CatBoost MAE:   3.9905 kWh  -->  Improved Best MAE:  3.8281 kWh  (+4.07% improvement)
-Baseline CatBoost R2:    0.9235      -->  Improved Best R2:   0.9244
+Baseline CatBoost RMSE:  8.2729 kWh  -->  Improved Best RMSE: 8.2108 kWh  (+0.75% improvement)
+Baseline CatBoost MAE:   3.9905 kWh  -->  Improved Best MAE:  3.8204 kWh  (+4.26% improvement)
+Baseline CatBoost R2:    0.9235      -->  Improved Best R2:   0.9247
 
 Selected Best Model: Weighted_Ensemble
 Saved Model Path:    models\best_model.joblib
 
 7. TOP 15 IMPORTANT FEATURES (Weighted_Ensemble)
 --------------------------------------------------------------------------------
- 1. Usage_kWh                           Importance: 17.5841
- 2. cos_nsm                             Importance: 12.2176
- 3. apparent_power_kVAh                 Importance: 11.9314
- 4. CO2(tCO2)                           Importance: 9.0565
- 5. usage_roll_std_16                   Importance: 3.3343
- 6. sin_nsm                             Importance: 3.1179
- 7. q_p_ratio                           Importance: 3.0798
- 8. usage_roll_max_4                    Importance: 2.7962
- 9. minute                              Importance: 2.6469
-10. usage_diff_1                        Importance: 2.2605
-11. usage_lag_1                         Importance: 2.2052
-12. usage_roll_min_4                    Importance: 2.0739
-13. NSM                                 Importance: 1.8647
-14. month                               Importance: 1.7867
-15. usage_lag_4                         Importance: 1.5760
+ 1. Usage_kWh                           Importance: 17.6642
+ 2. apparent_power_kVAh                 Importance: 12.0366
+ 3. cos_nsm                             Importance: 11.7858
+ 4. CO2(tCO2)                           Importance: 9.0410
+ 5. q_p_ratio                           Importance: 3.2451
+ 6. usage_roll_std_16                   Importance: 3.2272
+ 7. sin_nsm                             Importance: 3.1653
+ 8. usage_roll_max_4                    Importance: 2.8829
+ 9. minute                              Importance: 2.6046
+10. usage_diff_1                        Importance: 2.2163
+11. usage_roll_min_4                    Importance: 2.1313
+12. NSM                                 Importance: 2.1290
+13. usage_lag_1                         Importance: 1.9782
+14. month                               Importance: 1.8386
+15. usage_lag_4                         Importance: 1.6074
 ================================================================================

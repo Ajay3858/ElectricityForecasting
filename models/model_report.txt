@@ -1,0 +1,94 @@
+=====================================================================================
+ELECTRICITY CONSUMPTION FORECASTING
+MODEL TRAINING AND EVALUATION REPORT
+=====================================================================================
+Generated: 2026-10-18 21:29:33
+Random seed: 42
+
+1. DATASET SUMMARY
+-------------------------------------------------------------------------------------
+Source file: train.csv
+Raw observations: 28,031
+Processed observations: 27,358
+Training rows: 19,149
+Validation rows: 4,103
+Test rows: 4,104
+Sampling interval: 15 minutes (as expected by this project)
+Target column: next_interval_Usage_kWh
+Forecast horizon: Next chronological interval
+
+2. CHRONOLOGICAL DATA SPLIT
+-------------------------------------------------------------------------------------
+Configured proportions: 70% train, 15% validation, 15% test
+The split is chronological; rows are not randomly shuffled.
+One row is omitted at each partition boundary.
+
+Training:   2018-01-08 00:15:00 to 2018-07-26 11:15:00
+Validation: 2018-07-26 11:45:00 to 2018-09-07 05:15:00
+Test:       2018-09-07 05:45:00 to 2018-10-19 23:30:00
+
+3. VALIDATION RESULTS - MODEL SELECTION
+-------------------------------------------------------------------------------------
+Model                         RMSE (kWh)       MAE (kWh)          R2
+--------------------------------------------------------------------
+Naive_Persistence                12.7861          5.4752      0.8235
+LightGBM                          8.4233          3.9329      0.9234
+XGBoost                           8.4042          3.8926      0.9237
+CatBoost                          8.3978          4.0337      0.9239
+Weighted_Ensemble                 8.3208          3.9068      0.9252
+
+Selected model: Weighted_Ensemble
+Selection criterion: Lowest validation RMSE
+The validation results are used to choose the model. They are not the final held-out test results.
+
+4. FINAL HELD-OUT TEST RESULTS
+-------------------------------------------------------------------------------------
+Selected model: Weighted_Ensemble
+Test RMSE: 8.6425 kWh
+Test MAE:  4.0018 kWh
+Test R2:   0.9220
+
+The selected model was refitted using training and validation data before its final evaluation on the held-out test set.
+
+5. PERSISTENCE BASELINE - TEST SET
+-------------------------------------------------------------------------------------
+Baseline: predict next-interval consumption using current-interval Usage_kWh.
+Test RMSE: 12.5593 kWh
+Test MAE:  5.5686 kWh
+Test R2:   0.8353
+
+Test RMSE improvement over persistence baseline: 31.19%
+The selected model has lower test RMSE than the baseline.
+
+6. CATBOOST FEATURE IMPORTANCE
+-------------------------------------------------------------------------------------
+Feature importance below is from the final CatBoost model. It is not necessarily the importance ranking of the selected model.
+
+ 1. Usage_kWh                                Importance: 19.894918
+ 2. cos_nsm                                  Importance: 12.180592
+ 3. apparent_power_kVAh                      Importance: 11.477700
+ 4. CO2(tCO2)                                Importance: 8.926749
+ 5. q_p_ratio                                Importance: 3.213412
+ 6. usage_roll_std_16                        Importance: 3.158302
+ 7. sin_nsm                                  Importance: 3.087804
+ 8. usage_roll_max_4                         Importance: 2.398331
+ 9. usage_diff_1                             Importance: 2.114721
+10. minute                                   Importance: 2.083309
+11. usage_roll_min_4                         Importance: 2.042168
+12. NSM                                      Importance: 1.994557
+13. usage_lag_1                              Importance: 1.911123
+14. month                                    Importance: 1.757897
+15. usage_roll_range_4                       Importance: 1.647773
+
+7. METRIC INTERPRETATION
+-------------------------------------------------------------------------------------
+RMSE: Root Mean Squared Error; lower is better.
+MAE: Mean Absolute Error; lower is better.
+R2: Coefficient of determination; higher is generally better.
+
+Test metrics estimate performance on the held-out chronological period. Future performance may differ.
+The test results should not be used repeatedly to tune model parameters or select features.
+
+=====================================================================================
+END OF REPORT
+=====================================================================================

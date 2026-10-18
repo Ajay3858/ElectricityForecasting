@@ -5,3 +5,7 @@ env/
 prediction.csv
 automation/prediction_history.csv
 automation/live_telemetry.csv
+catboost_info/
+backup_before_retrain_*/
+train_backup.py
+prediction_test.csv

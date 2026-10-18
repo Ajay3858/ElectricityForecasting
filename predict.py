@@ -197,7 +197,7 @@ def main():
     args = parser.parse_args()
     
     try:
-        predict_next_interval(csv_path=args.input, output_path=args.output)
+        predict_next_interval(input_data=args.input, output_path=args.output)
     except Exception as err:
         print(f"\n[ERROR] {err}", file=sys.stderr)
         sys.exit(1)

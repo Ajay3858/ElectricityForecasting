@@ -1,0 +1,225 @@
+======================================================================
+1. DATASET SHAPE, COLUMNS, DATA TYPES
+======================================================================
+Shape: 28031 rows x 12 columns
+Columns: ['date', 'Usage_kWh', 'Lagging_Current_Reactive.Power_kVarh', 'Leading_Current_Reactive_Power_kVarh', 'CO2(tCO2)', 'Lagging_Current_Power_Factor', 'Leading_Current_Power_Factor', 'NSM', 'WeekStatus', 'Day_of_week', 'Load_Type', 'next_interval_Usage_kWh']
+
+Data types:
+  date: str
+  Usage_kWh: float64
+  Lagging_Current_Reactive.Power_kVarh: float64
+  Leading_Current_Reactive_Power_kVarh: float64
+  CO2(tCO2): float64
+  Lagging_Current_Power_Factor: float64
+  Leading_Current_Power_Factor: float64
+  NSM: int64
+  WeekStatus: str
+  Day_of_week: str
+  Load_Type: str
+  next_interval_Usage_kWh: float64
+
+======================================================================
+2. TARGET DISTRIBUTION
+======================================================================
+
+Usage_kWh:
+  count  = 28031.0
+  mean   = 27.923546
+  std    = 33.920138
+  min    = 2.450000
+  25%    = 3.130000
+  50%    = 4.610000
+  75%    = 51.260000
+  max    = 153.140000
+  median = 4.610000
+
+next_interval_Usage_kWh:
+  count  = 28031.0
+  mean   = 27.926530
+  std    = 33.921641
+  min    = 2.450000
+  25%    = 3.130000
+  50%    = 4.610000
+  75%    = 51.260000
+  max    = 153.140000
+  median = 4.610000
+
+======================================================================
+3. MISSING VALUES PER COLUMN
+======================================================================
+  date: 0
+  Usage_kWh: 0
+  Lagging_Current_Reactive.Power_kVarh: 0
+  Leading_Current_Reactive_Power_kVarh: 0
+  CO2(tCO2): 0
+  Lagging_Current_Power_Factor: 0
+  Leading_Current_Power_Factor: 0
+  NSM: 0
+  WeekStatus: 0
+  Day_of_week: 0
+  Load_Type: 0
+  next_interval_Usage_kWh: 0
+  TOTAL MISSING: 0
+
+======================================================================
+4. DUPLICATE ROWS
+======================================================================
+  Fully duplicate rows: 0
+
+======================================================================
+5. DUPLICATE TIMESTAMPS
+======================================================================
+  Duplicate timestamps: 0
+
+======================================================================
+6. INFINITE VALUES IN NUMERIC COLUMNS
+======================================================================
+  Usage_kWh: 0 infinite values
+  Lagging_Current_Reactive.Power_kVarh: 0 infinite values
+  Leading_Current_Reactive_Power_kVarh: 0 infinite values
+  CO2(tCO2): 0 infinite values
+  Lagging_Current_Power_Factor: 0 infinite values
+  Leading_Current_Power_Factor: 0 infinite values
+  NSM: 0 infinite values
+  next_interval_Usage_kWh: 0 infinite values
+
+======================================================================
+7. VALUES OUTSIDE PLAUSIBLE RANGES
+======================================================================
+  Negative Usage_kWh: 0
+  Negative next_interval_Usage_kWh: 0
+  Lagging_Current_Reactive.Power_kVarh: 0 below 0, 0 above 100
+  Leading_Current_Reactive_Power_kVarh: 0 below 0, 0 above 100
+  Lagging_Current_Power_Factor: 0 below 0, 0 above 100
+  Leading_Current_Power_Factor: 0 below 0, 0 above 100
+  Negative CO2(tCO2): 0
+  NSM < 0: 0
+  NSM >= 86400 (over 24h): 0
+  NSM range: [0, 85500]
+
+======================================================================
+8. CATEGORICAL LABELS
+======================================================================
+  WeekStatus: 2 unique values: ['Weekday', 'Weekend']
+  Day_of_week: 7 unique values: ['Friday', 'Monday', 'Saturday', 'Sunday', 'Thursday', 'Tuesday', 'Wednesday']
+  Load_Type: 3 unique values: ['Light_Load', 'Maximum_Load', 'Medium_Load']
+
+======================================================================
+9. DATE PARSING & RANGE
+======================================================================
+  Raw date first 5: ['01/01/2018 00:15', '01/01/2018 00:30', '01/01/2018 00:45', '01/01/2018 01:00', '01/01/2018 01:15']
+  Parsed datetime first 5: [Timestamp('2018-01-01 00:15:00'), Timestamp('2018-01-01 00:30:00'), Timestamp('2018-01-01 00:45:00'), Timestamp('2018-01-01 01:00:00'), Timestamp('2018-01-01 01:15:00')]
+  Date range: 2018-01-01 00:00:00 to 2018-10-19 23:45:00
+  Number of unique dates (day-level): 292
+  Number of unique months: 10
+
+======================================================================
+10. CHRONOLOGICAL ORDERING
+======================================================================
+  Strictly increasing: False
+  Rows where timestamp goes backward: 291
+    Row 95: 2018-01-01 23:45:00 -> 2018-01-01 00:00:00
+    Row 191: 2018-01-02 23:45:00 -> 2018-01-02 00:00:00
+    Row 287: 2018-01-03 23:45:00 -> 2018-01-03 00:00:00
+    Row 383: 2018-01-04 23:45:00 -> 2018-01-04 00:00:00
+    Row 479: 2018-01-05 23:45:00 -> 2018-01-05 00:00:00
+    Row 575: 2018-01-06 23:45:00 -> 2018-01-06 00:00:00
+    Row 671: 2018-01-07 23:45:00 -> 2018-01-07 00:00:00
+    Row 767: 2018-01-08 23:45:00 -> 2018-01-08 00:00:00
+    Row 863: 2018-01-09 23:45:00 -> 2018-01-09 00:00:00
+    Row 959: 2018-01-10 23:45:00 -> 2018-01-10 00:00:00
+
+======================================================================
+11. 15-MINUTE INTERVAL CONSISTENCY
+======================================================================
+  Total consecutive pairs: 28030
+  Pairs with exactly 15-min gap: 27448
+  Pairs with non-15-min gap: 582
+  Unique gap values (minutes): [np.float64(-1425.0), np.float64(15.0), np.float64(1455.0)]
+
+  Distribution of gap values:
+    -1425.0 min: 291 occurrences
+    15.0 min: 27448 occurrences
+    1455.0 min: 291 occurrences
+
+  First 15 non-15-min gap locations:
+    Row 95: 2018-01-01 23:45:00 -> 2018-01-01 00:00:00  (gap=-1425.0 min)
+    Row 96: 2018-01-01 00:00:00 -> 2018-01-02 00:15:00  (gap=1455.0 min)
+    Row 191: 2018-01-02 23:45:00 -> 2018-01-02 00:00:00  (gap=-1425.0 min)
+    Row 192: 2018-01-02 00:00:00 -> 2018-01-03 00:15:00  (gap=1455.0 min)
+    Row 287: 2018-01-03 23:45:00 -> 2018-01-03 00:00:00  (gap=-1425.0 min)
+    Row 288: 2018-01-03 00:00:00 -> 2018-01-04 00:15:00  (gap=1455.0 min)
+    Row 383: 2018-01-04 23:45:00 -> 2018-01-04 00:00:00  (gap=-1425.0 min)
+    Row 384: 2018-01-04 00:00:00 -> 2018-01-05 00:15:00  (gap=1455.0 min)
+    Row 479: 2018-01-05 23:45:00 -> 2018-01-05 00:00:00  (gap=-1425.0 min)
+    Row 480: 2018-01-05 00:00:00 -> 2018-01-06 00:15:00  (gap=1455.0 min)
+    Row 575: 2018-01-06 23:45:00 -> 2018-01-06 00:00:00  (gap=-1425.0 min)
+    Row 576: 2018-01-06 00:00:00 -> 2018-01-07 00:15:00  (gap=1455.0 min)
+    Row 671: 2018-01-07 23:45:00 -> 2018-01-07 00:00:00  (gap=-1425.0 min)
+    Row 672: 2018-01-07 00:00:00 -> 2018-01-08 00:15:00  (gap=1455.0 min)
+    Row 767: 2018-01-08 23:45:00 -> 2018-01-08 00:00:00  (gap=-1425.0 min)
+
+======================================================================
+12. NSM (Number of Seconds from Midnight) CONSISTENCY
+======================================================================
+  NSM matches time-of-day from parsed datetime: 28031
+  NSM mismatches: 0
+
+======================================================================
+13. DAY_OF_WEEK CONSISTENCY
+======================================================================
+  Day_of_week matches parsed datetime: 28031
+  Day_of_week mismatches: 0
+
+======================================================================
+14. WEEKSTATUS CONSISTENCY
+======================================================================
+  WeekStatus matches parsed datetime: 28031
+  WeekStatus mismatches: 0
+
+======================================================================
+15. MIDNIGHT HANDLING
+======================================================================
+  Rows with NSM=900 (00:15:00): 292
+  First 5 rows with NSM=900:
+    Row 0: date=01/01/2018 00:15, datetime=2018-01-01 00:15:00, Day_of_week=Monday
+    Row 96: date=02/01/2018 00:15, datetime=2018-01-02 00:15:00, Day_of_week=Tuesday
+    Row 192: date=03/01/2018 00:15, datetime=2018-01-03 00:15:00, Day_of_week=Wednesday
+    Row 288: date=04/01/2018 00:15, datetime=2018-01-04 00:15:00, Day_of_week=Thursday
+    Row 384: date=05/01/2018 00:15, datetime=2018-01-05 00:15:00, Day_of_week=Friday
+
+  First row: date=01/01/2018 00:15, datetime=2018-01-01 00:15:00, NSM=900
+  Second row: date=01/01/2018 00:30, datetime=2018-01-01 00:30:00, NSM=1800
+  Last row: date=19/10/2018 23:45, datetime=2018-10-19 23:45:00, NSM=85500
+
+======================================================================
+16. TARGET ALIGNMENT: next_interval_Usage_kWh[i] == Usage_kWh[i+1]
+======================================================================
+  Pairs checked: 28030
+  Matches: 28030
+  Mismatches: 0
+
+======================================================================
+17. LAST ROW ANALYSIS
+======================================================================
+  Last row index: 28030
+  Last row date: 19/10/2018 23:45
+  Last row datetime: 2018-10-19 23:45:00
+  Last row Usage_kWh: 61.2
+  Last row next_interval_Usage_kWh: 86.83
+  Is there a following observation? NO (last row in dataset)
+
+======================================================================
+18. MIDNIGHT ROWS (NSM=0)
+======================================================================
+  Rows with NSM=0 (exactly midnight): 291
+  First 5:
+    Row 95: date=01/01/2018 00:00, datetime=2018-01-01 00:00:00
+    Row 191: date=02/01/2018 00:00, datetime=2018-01-02 00:00:00
+    Row 287: date=03/01/2018 00:00, datetime=2018-01-03 00:00:00
+    Row 383: date=04/01/2018 00:00, datetime=2018-01-04 00:00:00
+    Row 479: date=05/01/2018 00:00, datetime=2018-01-05 00:00:00
+
+======================================================================
+AUDIT COMPLETE
+======================================================================
